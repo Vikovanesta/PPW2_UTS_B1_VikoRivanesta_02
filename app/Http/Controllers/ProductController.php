@@ -34,7 +34,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request) : RedirectResponse
     {
         Product::create($request->all());
-        return redirect()->route('index')
+        return redirect()->route('products.index')
                 ->withSuccess('New product is added successfully.');
     }
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
     public function edit(Product $product) : View
     {
         return view('products.edit', [
-            'products' => $product
+            'product' => $product
         ]);
     }
 
@@ -75,7 +75,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('index')
+        return redirect()->route('products.index')
                 ->withSuccess('Product is deleted successfully.');
     }
 }
